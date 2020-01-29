@@ -1,0 +1,154 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage{graphicx,textcomp}
+\usepackage{natbib}
+\usepackage{setspace}
+\usepackage{fullpage}
+\usepackage{color}
+\usepackage[reqno]{amsmath}
+\usepackage{amsthm}
+\usepackage{fancyvrb}
+\usepackage{amssymb,enumerate}
+\usepackage[all]{xy}
+\usepackage{endnotes}
+\usepackage{lscape}
+\newtheorem{com}{Comment}
+\usepackage{float}
+\usepackage{hyperref}
+\newtheorem{lem} {Lemma}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{defn}{Definition}
+\newtheorem{cor}{Corollary}
+\newtheorem{obs}{Observation}
+\usepackage[compact]{titlesec}
+\usepackage{dcolumn}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{multirow}
+\usepackage{xcolor}
+% \newcolumntype{.}{D{.}{.}{-1}}
+% \newcolumntype{d}[1]{D{.}{.}{#1}}
+\definecolor{light-gray}{gray}{0.65}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{color}
+\graphicspath{ {./images/} }
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+\lstset{style=mystyle}
+\newcommand{\Sref}[1]{Section~\ref{#1}}
+\newtheorem{hyp}{Hypothesis}
+
+\title{Problem Set 1}
+\date{QTM 200}
+\author{Anne Clarke}
+
+\begin{document}
+	\maketitle
+	
+	I did not know how to include output directly from code, so I have written in answers to questions instead, and for graphs uploaded screenshots from executed R code. 
+	\vspace{1cm}
+	\section*{Question 1 (25 points)}
+	
+	A private school counselor was curious about the average of IQ of the students in her school and took a random sample of 25 students' IQ scores. The following is the data set:
+	\vspace{.5cm}
+	
+	\lstinputlisting[language=R, firstline=5, lastline=5]{qtm200ps1.R}  
+	
+	\noindent Below is the code I used to to calculate the confidence interval:
+	
+	\lstinputlisting[language=R, firstline=14, lastline=26]{qtm200ps1.R}  
+	
+	\noindent \textbf{Given repeated sampling, there is a 90\% chance that the true avg IQ of students in the school, assuming a normal distribution, would lie between (94.13283 and 102.74717).}
+	
+	\vspace{1cm}
+	\section*{Question 2 (25 points)}
+	A private school counselor was curious  whether  the average of IQ of the students in her school is higher than the average IQ score 100 among all the schools in the country. She took a random sample of 25 students' IQ scores. The following is the data set:
+		\vspace{.5cm}
+	
+	\lstinputlisting[language=R, firstline=7, lastline=7]{qtm200ps1.R}  
+	
+	\noindent Below is the code I used to to calculate the confidence interval:
+	
+	\lstinputlisting[language=R, firstline=28, lastline=40]{qtm200ps1.R}  
+	
+	\noindent
+	\textbf{Given repeated sampling, there is a 95\% chance that the true avg IQ of students in the school, assuming a normal distribution, would lie between (93.30769 and 103.57231).}
+	
+	\vspace{1cm}
+	\section*{Question 3 (50 points)}
+	
+	\noindent Researchers are curious about what affects the education expenditure on public education. The following is available variables in a data set about the education expenditure. \\
+	\\
+		\begin{itemize}
+		
+		\item
+		Please plot the relationships among \emph{Y}, \emph{X1}, \emph{X2}, and \emph{X3}? What are the correlations among them (you just need to describe the graph and the relationships among them)?
+		\vspace{.5cm}
+	\vspace{.5cm}
+	\noindent First, I imported the data into R:
+	\lstinputlisting[language=R, firstline=11, lastline=12]{qtm200ps1.R}   
+	Here is the first graph, in which I plot Personal Income per Capita vs Expenditure on Public Education per Capita. There seems to be a positive correlation between expenditure and personal income, with some outliers.   
+	
+	\includegraphics{fig1}
+	
+	Here is the second graph, in which I plot The Number of Residents/1000 under 18 Years of Age vs Expenditure on Public Education per Capita. There seems to be almost no correlation btwn these two variables. 
+	
+	\includegraphics{fig2}
+	
+	Here is the first graph, in which I plot The Number of People/1000 Residing in Urban Areas vs Expenditure on Public Education per Capita. There seems to be a positive correlation between expenditure and people/1000 residing in urban areas, with some outliers.   
+	
+	\includegraphics{fig3}
+	\vspace{.5cm}
+	
+	
+		\item
+		Please plot the relationship between \emph{Y} and \emph{Region}? On average, which region has the highest per capita expenditure on public education?
+		Here is the R code used to generate this graph:
+
+
+		\lstinputlisting[language=R, firstline=66, lastline=82]{qtm200ps1.R}  
+		Here is the graph I produced, which is a box-and-whisker plot that shows the relationship between Per Capita Expenditure on Public Education and Region. It shows that on average the West spends the most on public education.
+		
+		\includegraphics{fig4}
+		
+		\item
+		Please plot the relationship between \emph{Y} and \emph{X1}? Describe this graph and the relationship. Reproduce the above graph including one more variable \emph{Region} and display different regions with different types of symbols and colors.
+		
+		Here is the R code used to generate this graph:
+		\lstinputlisting[language=R, firstline=84, lastline=85]{qtm200ps1.R}  
+		Here is the first graph I produced which plots Personal Income per Capita vs Expenditure on Public Education per Capita. There seems to be a positive correlation between expenditure and personal income, with some outliers. 
+		
+		\includegraphics{fig5}
+		
+		Next, I incorporate the Region variable into the same type of line graph, resulting in one line for each region. Below is the code and the resultant graph:
+		
+		\lstinputlisting[language=R, firstline=87, lastline=104]{qtm200ps1.R}  
+		
+		\includegraphics{fig6}
+		
+	\end{itemize}
+	
+\end{document}
